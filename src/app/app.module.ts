@@ -21,6 +21,13 @@ import {ToastModule} from 'primeng/toast';
 import {InputTextModule} from 'primeng/inputtext';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {DropdownModule} from 'primeng/dropdown';
+import {CarouselModule} from 'primeng/carousel';
+import {DockModule} from 'primeng/dock';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AddHeroComponent } from './pages/dialog/add-hero/add-hero.component';
+import { DeleteHeroComponent } from './pages/dialog/delete-hero/delete-hero.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,9 @@ import {DropdownModule} from 'primeng/dropdown';
     WelcomeComponent,
     HeroTableComponent,
     HeroDetailComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    AddHeroComponent,
+    DeleteHeroComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +54,14 @@ import {DropdownModule} from 'primeng/dropdown';
     ToastModule,
     ContextMenuModule,
     MultiSelectModule,
-    DialogModule
-
+    DialogModule,
+    CarouselModule,
+    DockModule,
+    ConfirmDialogModule,
   ],
-  providers: [],
+  providers: [
+    DynamicDialogModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,16 @@
-<p-table #dt [columns]="cols" [value]="listHeroesFinal" [paginator]="true" [rows]="10"  responsiveLayout="scroll"
-currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50,100]" [globalFilterFields]="['name']">
-<ng-template pTemplate="caption">
-    <div class="flex">
-        <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search keyword" />
-        </span>
-    </div>
-</ng-template>
+<p-table #dt [columns]="cols" [value]="listHeroesFinal" [paginator]="true" [rows]="10" responsiveLayout="scroll" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" totalHeroes="totalRecords"
+   
+    [rowsPerPageOptions]="[10,25,50,100]" [globalFilterFields]="['name']">
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
@@ -15,11 +18,19 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
             </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-columns>
         <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
+            <td>{{columns.name}}</td>
+            <td>{{columns.description}}</td>
+            <td>
+                <!-- <button pButton pRipple type="button" icon="pi-info-circle" class="p-button-rounded"
+                    [routerLink]="['/heroe/',columns.id]"></button> -->
+                    <button type="button" (click)="showDetail(columns.id)" pButton icon="pi pi-info-circle" label="Show"></button>
+                    <button type="button" (click)="addTeam(columns.id, columns.name)" pButton icon="pi pi-plus-circle" label="Show"></button>
+                </td>
         </tr>
     </ng-template>
 </p-table>
+
+<p-confirmDialog [style]="{width: '70%'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-toast></p-toast>
