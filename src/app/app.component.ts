@@ -37,7 +37,7 @@ export class AppComponent {
         }
       }
     ];
-    localStorage.removeItem('team');
+
     if(localStorage.getItem('team') === null){
       localStorage.setItem('team', JSON.stringify(this.defaultTeam));
       let dato =localStorage.getItem('team');
