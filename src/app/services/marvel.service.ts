@@ -23,13 +23,23 @@ export class MarvelService {
     console.log('hash', this.hash)
   }
   // : Observable<Hero[]>
-  getHeroes(offsetS: number) {
-    let url = this.url + 'characters?offset='+ offsetS+ '&limit=100&ts=1&apikey=' + this.apikeyPublic + '&hash=' + this.hash;
+  getHeroes(offsetS: number, limit:number) {
+    let url = this.url + 'characters?offset='+ offsetS+ '&limit='+limit+'&ts=1&apikey=' + this.apikeyPublic + '&hash=' + this.hash;
     return this.http.get<any>(url).pipe(map((resp: any) => resp.data.results));
   }
 
   getHeroesLength(){
     let url = this.url + 'characters?ts=1&apikey=' + this.apikeyPublic + '&hash=' + this.hash;
     return this.http.get<any>(url).pipe(map((resp: any) => resp.data.total));
+  }
+
+  getHeroDetail(id:number){
+    let url = this.url + 'characters/'+id+'?ts=1&apikey=' + this.apikeyPublic + '&hash=' + this.hash;
+    return this.http.get<any>(url).pipe(map((resp: any) => resp.data.results));
+  }
+
+  getHeroComic(id:number){
+    let url = this.url + 'characters/'+id+'/comics?orderBy=focDate%2Ctitle&ts=1&apikey=' + this.apikeyPublic + '&hash=' + this.hash;
+    return this.http.get<any>(url).pipe(map((resp: any) => resp));
   }
 }

@@ -1,1 +1,24 @@
-<p>my-team works!</p>
+<p-card>
+    <input type="text" pInputText [disabled]="isDisabled" [(ngModel)]="nameTeam"> 
+    <p></p>
+    <textarea pInputTextarea [disabled]="isDisabled"[(ngModel)]="description"> </textarea>
+    <button *ngIf="isDisabled" type="button" (click)="edit()" pButton icon="pi pi-pencil" label="Edit"></button>
+    <button *ngIf="!isDisabled" type="button" (click)="save()" pButton icon="pi pi-save" label="Save"></button>
+</p-card>
+<div *ngFor="let hero of heroInfo">
+    <p-card>
+        <ng-template pTemplate="header">
+            {{hero.name}}
+        </ng-template>
+        <img src="{{hero.imageUrl}} " [alt]="hero.name">
+        <ng-template pTemplate="footer">
+            <button type="button" (click)="deleteTeam(hero.id, hero.name)" pButton icon="pi pi-plus-circle"
+                label="Delete"></button>
+        </ng-template>
+    </p-card>
+
+
+</div>>
+
+<p-confirmDialog [style]="{width: '70%'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-toast></p-toast>

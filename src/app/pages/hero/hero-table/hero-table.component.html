@@ -26,7 +26,8 @@
                 <!-- <button pButton pRipple type="button" icon="pi-info-circle" class="p-button-rounded"
                     [routerLink]="['/heroe/',columns.id]"></button> -->
                     <button type="button" (click)="showDetail(columns.id)" pButton icon="pi pi-info-circle" label="Show"></button>
-                    <button type="button" (click)="addTeam(columns.id, columns.name)" pButton icon="pi pi-plus-circle" label="Show"></button>
+                    <button type="button" *ngIf="!noAddNewMembers" (click)="addTeam(columns.id, columns.name)" pButton icon="pi pi-plus-circle" label="Add"></button>
+                    <!-- <button type="button" (click)="deleteTeam(columns.id, columns.name)" pButton icon="pi pi-plus-circle" label="Delete"></button> -->
                 </td>
         </tr>
     </ng-template>

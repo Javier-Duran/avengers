@@ -12,7 +12,7 @@ import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
   selector: 'app-hero-table',
   templateUrl: './hero-table.component.html',
   styleUrls: ['./hero-table.component.css'],
-  providers: [DialogService,ConfirmationService, MessageService]
+  providers: [DialogService, ConfirmationService, MessageService]
 })
 export class HeroTableComponent implements OnInit {
 
@@ -21,18 +21,22 @@ export class HeroTableComponent implements OnInit {
   loading: boolean = false;
   listHeroesFinal: Hero[] = [];
   virtualDatabase: Hero[] = [];
-  allheroes=[];
+  allheroes = [];
   totalHeroes: number = 0;
   infoTeam: Team = new Team();
+  noAddNewMembers: boolean = false;
   @ViewChild('dt') dt: Table | undefined;
   constructor(private mService: MarvelService, public dialogService: DialogService,
     private confirmationService: ConfirmationService, private messageService: MessageService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     let infoJson = localStorage.getItem('team');
     this.infoTeam = infoJson !== null ? JSON.parse(infoJson) : new Team();
     console.log("infoteam", this.infoTeam)
+    if(this.infoTeam.heroes.length === 6){
+      this.noAddNewMembers = true;
+    }
     this.loadHeros();
     this.cols = [
       { field: 'name', header: 'Name' },
@@ -58,14 +62,14 @@ export class HeroTableComponent implements OnInit {
         allObservables.push(this.mService.getHeroes(offsetS, 100));
         offsetS += 100;
       }
-      forkJoin(allObservables).subscribe(allObservablesResponse =>{
-        allObservablesResponse.forEach(oneObservableRespne =>{
+      forkJoin(allObservables).subscribe(allObservablesResponse => {
+        allObservablesResponse.forEach(oneObservableRespne => {
           concatArrays = concatArrays.concat(oneObservableRespne);
         })
-       this.listHeroesFinal = concatArrays;
+        this.listHeroesFinal = concatArrays;
         console.log("concat", concatArrays)
       })
-      
+
       this.loading = false;
     })
 
@@ -81,18 +85,10 @@ export class HeroTableComponent implements OnInit {
     });
   }
 
-  addTeam(idHero: number, nameHero: string){
-    // const ref = this.dialogService.open(AddHeroComponent, {
-    
-    //   data: {
-    //     id: idHero,
-    //     name: nameHero
-    //   },
-    // });
-
+  addTeam(idHero: number, nameHero: string) {
     this.confirmationService.confirm({
       header: 'Add Hero to your team',
-      message: 'Are you sure that you want to add ' + nameHero + ' to '+this.infoTeam.name+'?',
+      message: 'Are you sure that you want to add ' + nameHero + ' to ' + this.infoTeam.name + '?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: nameHero + ' has joined the avengers' });
@@ -106,10 +102,36 @@ export class HeroTableComponent implements OnInit {
           localStorage.setItem('team', JSON.stringify(this.infoTeam));
           let dato = localStorage.getItem('team')
           console.log(dato);
+          if(this.infoTeam.heroes.length === 6){
+            this.noAddNewMembers = true;
+          }
         })
 
       },
     });
   }
+
+  // deleteTeam(idHero: number, nameHero: string) {
+  //   this.confirmationService.confirm({
+  //     header: 'Delete Hero from your team',
+  //     message: 'Are you sure that you want expel from your ' + this.infoTeam.name + ' to ' + nameHero + '?',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: nameHero + ' has left the' });
+  //       let heroesFiltered = this.infoTeam.heroes.filter(hero => hero.id != idHero);
+  //       //  const index = array.indexOf(idHero);
+  //       console.log("hero to delete", heroesFiltered)
+  //       this.infoTeam.heroes = [];
+  //       this.infoTeam.heroes = heroesFiltered;
+  //       localStorage.setItem('team', JSON.stringify(this.infoTeam));
+  //       let dato = localStorage.getItem('team')
+  //       console.log(dato);
+  //       if(this.infoTeam.heroes.length < 6){
+  //         this.noAddNewMembers = false;
+  //       }
+  //     },
+  //   });
+
+  // }
 
 }
