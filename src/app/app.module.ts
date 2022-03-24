@@ -28,6 +28,7 @@ import { AddHeroComponent } from './pages/dialog/add-hero/add-hero.component';
 import { DeleteHeroComponent } from './pages/dialog/delete-hero/delete-hero.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {ConfirmationService} from 'primeng/api';
     CarouselModule,
     DockModule,
     ConfirmDialogModule,
+    FormsModule
   ],
   providers: [
     DynamicDialogModule
