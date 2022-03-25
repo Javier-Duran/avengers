@@ -24,7 +24,7 @@ export class AppComponent {
       },
       {
         label: 'My Team',
-        icon: "assets/images/pngegg.png",
+        icon: "assets/images/pngwing.com (1).png",
         command: () => {
           this.route.navigate(['myTeam'])
         }

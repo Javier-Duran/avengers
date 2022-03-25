@@ -1,12 +1,25 @@
-<div class="cardWelcome">
+<div class="p-3">
     <p-card header="Marvel Building Team" subheader="Welcome!" styleClass="cardWelcome">
-        <ng-template pTemplate="header">
-            <img alt="Card" src="../../../assets/images/Marvel_Logo.svg.png">
-        </ng-template>
-        <p>On this page you will find information about your favorite Marvel characters, and you can even create your own team of heroes to save the world. </p>
-        <ng-template pTemplate="footer">
-            <p-button label="Hero List" icon="pi pi-check" routerLinkActive="active" [routerLink]="['/heroes']" ></p-button>
-            <p-button label="My Team" icon="pi pi-times" [style]="{'margin-left': '.5em'}"></p-button>
-        </ng-template>
+        <div class="divWelcome" fxLayout="column" fxLayoutAlign="center stretch">
+            <div fxFlex="1">
+                <p>On this page you will find information about your favorite Marvel characters, and you can even create
+                    your own team of heroes to save the world. </p>
+            </div>
+            <div fxFlex="1">
+                <div fxLayout="row" fxLayoutAlign="center stretch" fxLayout.lt-md="column"
+                    fxLayoutAlign.lt-md="center stretch">
+                    <div class="px-2">
+                        <button pButton pRipple type="button" label="Primary" class="p-button-outlined my-2 mx-2"
+                            label="Hero List" icon="pi pi-check" routerLinkActive="active" style="width:100%"
+                            [routerLink]="['/heroes']"></button>
+                    </div>
+                    <div class="px-2">
+                        <button pButton pRipple type="button" label="Primary" class="p-button-outlined my-2 mx-2" style="width:100%"
+                            label="My Team" icon="pi pi-times" routerLinkActive="active"
+                            [routerLink]="['/myTeam']"></button>                   
+                    </div>
+                </div>
+            </div>
+        </div>
     </p-card>
 </div>

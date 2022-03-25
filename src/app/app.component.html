@@ -1,10 +1,27 @@
+<!-- 
+<header class="headerWelcome">
+  <img class="imageHeader" src="../../../assets/images/Marvel_Logo.svg.png">
+</header> -->
 <div class="fondoGeneral">
+  <p-toolbar>
+    <div fxLayout="column" fxLayoutAlign="flex-start" fxFlex="60%" fxFlex.lt-md="100%">
+      <img class="imageHeader" src="../../../assets/images/Marvel_Logo.svg.png">
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="flex-end" fxFlex="33%" fxFlex.lt-md="100%">
+        <p-button class="button-rectangule" pTooltip="Home" icon="pi pi-home" [routerLink]="['/']"></p-button>
+        <p-button class="button-rectangule" pTooltip="Character List"icon="pi pi-list" [routerLink]="['/heroes']"></p-button>
+        <p-button class="button-rectangule" pTooltip="My Team"icon="pi pi-prime" [routerLink]="['/myTeam']"></p-button>
+    </div>
+</p-toolbar>
+
+
   <router-outlet></router-outlet>
-</div>
-<div class="dock-window">
+  <!-- <div class="dock-window">
     <p-dock [model]="dockBasicItems" position="bottom">
-        <ng-template pTemplate="item" let-item>
-            <img [src]="item.icon" [alt]="item.label" width="100%">
-        </ng-template>
+      <ng-template pTemplate="item" let-item>
+        <img [src]="item.icon" [alt]="item.label" width="100%">
+      </ng-template>
     </p-dock>
+  </div> -->
 </div>

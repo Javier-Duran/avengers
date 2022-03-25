@@ -1,9 +1,9 @@
 <p>Hero Details</p>
-<img alt="Card" src={{hero.imageUrl}}>
+<img alt="Card" class="imgHero" src={{hero.imageUrl}}>
 <p>Name: {{hero.name}}</p>
 <p>Description: {{hero.description}}</p>
 
-<p-carousel [value]="listHeroComics" [numVisible]="3" [numScroll]="3" [circular]="false">
+<p-carousel [value]="listHeroComics" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="false" [style]="{'max-width':'100%', 'margin-top':'2em'}">
     <ng-template pTemplate="header">
         <h5>Some of his comic book appearances:</h5>
     </ng-template>
@@ -12,7 +12,7 @@
             <div class="product-item-content">
                 <div class="mb-3" *ngIf="product.images[0] !=undefined">
                     <img src="{{product.images[0].path}}.{{product.images[0].extension}} " [alt]="product.name"
-                        class="product-image" />
+                        class="product-image imgHero" />
                 </div>
                 <div>
                     <h4 class="mb-1">{{product.title}}</h4>

@@ -10,6 +10,8 @@ import { HeroTableComponent } from './pages/hero/hero-table/hero-table.component
 import { HeroDetailComponent } from './pages/hero/hero-detail/hero-detail.component';
 import { MyTeamComponent } from './pages/team/my-team/my-team.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { CardModule } from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
@@ -29,6 +31,8 @@ import { DeleteHeroComponent } from './pages/dialog/delete-hero/delete-hero.comp
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { FormsModule } from '@angular/forms';
+import {ToolbarModule} from 'primeng/toolbar';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     CardModule,
     ButtonModule,
@@ -59,7 +64,9 @@ import { FormsModule } from '@angular/forms';
     CarouselModule,
     DockModule,
     ConfirmDialogModule,
-    FormsModule
+    FormsModule,
+    ToolbarModule,
+    TooltipModule
   ],
   providers: [
     DynamicDialogModule

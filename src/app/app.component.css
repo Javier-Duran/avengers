@@ -1,0 +1,23 @@
+.headerWelcome{
+    height: 15%;
+    width: 100%;
+}
+
+.imageHeader{
+    width: 150px;
+}
+
+.p-toolbar-group-left{
+    max-width: 90%;
+}
+
+
+.fondoGeneral{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-rectangule{
+    margin: 3px;
+}

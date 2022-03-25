@@ -18,7 +18,7 @@ export class HeroTableComponent implements OnInit {
 
   listHeroes: Hero[] = [];
   cols: any[] = [];
-  loading: boolean = false;
+  loading: boolean = true;
   listHeroesFinal: Hero[] = [];
   virtualDatabase: Hero[] = [];
   allheroes = [];
@@ -39,9 +39,9 @@ export class HeroTableComponent implements OnInit {
     }
     this.loadHeros();
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'description', header: 'Description' },
-      { field: 'actions', header: 'Actions' },
+      { field: 'name', header: 'Name', width: '15%' },
+      { field: 'description', header: 'Description', width: '75%' },
+      { field: 'actions', header: 'Actions', width: '10%' },
     ]
   }
 
@@ -110,28 +110,4 @@ export class HeroTableComponent implements OnInit {
       },
     });
   }
-
-  // deleteTeam(idHero: number, nameHero: string) {
-  //   this.confirmationService.confirm({
-  //     header: 'Delete Hero from your team',
-  //     message: 'Are you sure that you want expel from your ' + this.infoTeam.name + ' to ' + nameHero + '?',
-  //     icon: 'pi pi-exclamation-triangle',
-  //     accept: () => {
-  //       this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: nameHero + ' has left the' });
-  //       let heroesFiltered = this.infoTeam.heroes.filter(hero => hero.id != idHero);
-  //       //  const index = array.indexOf(idHero);
-  //       console.log("hero to delete", heroesFiltered)
-  //       this.infoTeam.heroes = [];
-  //       this.infoTeam.heroes = heroesFiltered;
-  //       localStorage.setItem('team', JSON.stringify(this.infoTeam));
-  //       let dato = localStorage.getItem('team')
-  //       console.log(dato);
-  //       if(this.infoTeam.heroes.length < 6){
-  //         this.noAddNewMembers = false;
-  //       }
-  //     },
-  //   });
-
-  // }
-
 }
