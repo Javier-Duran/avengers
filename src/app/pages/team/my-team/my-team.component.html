@@ -1,29 +1,41 @@
-<div class="p-3">
-
-    <p-card>
-        <input type="text" pInputText [disabled]="isDisabled" [(ngModel)]="nameTeam"> 
-        <p></p>
-        <!-- <input class="descriptionField" type="text" pInputText >  -->
-        <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" class="p-inputtextarea p-inputtext p-component p-element p-inputtextarea-resizable p-filled" [disabled]="isDisabled" [(ngModel)]="description"></textarea>
-        <p></p>
-        <button *ngIf="isDisabled" type="button" (click)="edit()" pButton icon="pi pi-pencil" label="Edit"></button>
-        <button *ngIf="!isDisabled" type="button" (click)="save()" pButton icon="pi pi-save" label="Save"></button>
-    </p-card>
-</div>
-<ng-container *ngFor="let hero of heroInfo" >
+<div class="card">
     <div class="p-3">
         <p-card>
-            <ng-template pTemplate="header">
-                {{hero.name}}
-            </ng-template>
-            <img src="{{hero.imageUrl}} " [alt]="hero.name" class="imgHero">
-            <ng-template pTemplate="footer">
-                <button type="button" (click)="deleteTeam(hero.id, hero.name)" pButton icon="pi pi-plus-circle"
-                    label="Delete"></button>
-            </ng-template>
+            <div fxLayout="column" fxFlex="100%">
+                <input type="text" pInputText [disabled]="isDisabled" [(ngModel)]="nameTeam">
+                <p></p>
+                <!-- <input class="descriptionField" type="text" pInputText >  -->
+                <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"
+                    class="p-inputtextarea p-inputtext p-component p-element p-inputtextarea-resizable p-filled"
+                    [disabled]="isDisabled" [(ngModel)]="description"></textarea>
+                <p></p>
+                <button *ngIf="isDisabled" type="button" (click)="edit()" pButton icon="pi pi-pencil"
+                    label="Edit"></button>
+                <button *ngIf="!isDisabled" type="button" (click)="save()" pButton icon="pi pi-save"
+                    label="Save"></button>
+            </div>
         </p-card>
     </div>
-</ng-container>
+    <div fxLayout="row" fxLayout.lt-md="column">
+        <ng-container *ngFor="let hero of heroInfo">
+            <div fxFlex="33%">
+                <div class="p-3">
+                    <p-card>
+                        <ng-template pTemplate="header">
+                            {{hero.name}}
+                        </ng-template>
+                        <img src="{{hero.imageUrl}} " [alt]="hero.name" style="width:100%">
+                        <ng-template pTemplate="footer">
+                            <button type="button" class="p-button-outlined my-2 mx-2" style="width:100%"
+                                (click)="deleteTeam(hero.id, hero.name)" pButton pRipple icon="pi pi-trash"
+                                label="Delete"></button>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
 
+        </ng-container>
+    </div>
+</div>
 <p-confirmDialog [style]="{width: '70%'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 <p-toast></p-toast>
